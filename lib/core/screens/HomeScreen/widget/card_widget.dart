@@ -65,17 +65,7 @@ class CardWidget extends StatelessWidget {
                     color: const Color(0xFF777777),
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 5.w),
-                  child: Container(
-                    width: 3,
-                    height: 3,
-                    decoration: const BoxDecoration(
-                      color: Color(0xFF444444),
-                      shape: BoxShape.circle,
-                    ),
-                  ),
-                ),
+                
               ],
             ),
           ),

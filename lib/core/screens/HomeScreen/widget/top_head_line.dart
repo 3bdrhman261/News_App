@@ -86,35 +86,14 @@ class TopHeadLine extends StatelessWidget {
                     ),
 
                     SizedBox(height: 8.h),
-                    Row(
-                      children: [
-                        Text(
-                          title,
-                          style: GoogleFonts.dmSans(
-                            fontSize: 11.sp,
-                            color: const Color(0xFFAAAAAA),
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 6.w),
-                          child: Container(
-                            width: 3,
-                            height: 3,
-                            decoration: const BoxDecoration(
-                              color: Color(0xFF555555),
-                              shape: BoxShape.circle,
-                            ),
-                          ),
-                        ),
-                        Text(
-                          date,
-                          style: GoogleFonts.dmSans(
-                            fontSize: 11.sp,
-                            color: const Color(0xFFAAAAAA),
-                          ),
-                        ),
-                      ],
+                    Text(
+                      "$title . $date",
+                      style: GoogleFonts.dmSans(
+                        fontSize: 11.sp,
+                        color: const Color(0xFFAAAAAA),
+                      ),
                     ),
+                   
                   ],
                 ),
               ),

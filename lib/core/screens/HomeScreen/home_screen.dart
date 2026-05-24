@@ -1,7 +1,7 @@
-import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:news_api/core/screens/HomeScreen/models/top_headline_models.dart';
@@ -118,7 +118,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       scrollDirection: Axis.horizontal,
                       physics: const BouncingScrollPhysics(),
                       children: [
-                        ListviewButton(title: "travel".tr(), isActive: true),
+                        ListviewButton(title: "travel".tr(),),
                         ListviewButton(title: "technology".tr()),
                         ListviewButton(title: "entertainment".tr()),
                         ListviewButton(title: "Business".tr()),
@@ -140,8 +140,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
 
-              
-
                 SizedBox(height: 17.h),
                 Expanded(
                   child: Padding(
@@ -154,7 +152,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         return CardWidget(
                           image: article.urlToImage,
                           date: DateFormat(
-                            'yyyy_MM_dd - KK:mm',
+                            'yyyy/MM/dd  KK:mm',
                           ).format(topHeadlineModels.articles![0].publishedAt!),
                           name: article.author ?? "",
                           title: article.title ?? "",

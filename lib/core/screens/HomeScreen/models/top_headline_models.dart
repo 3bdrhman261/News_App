@@ -1,12 +1,4 @@
-// To parse this JSON data, do
-//
-//     final topHeadlineModels = topHeadlineModelsFromJson(jsonString);
 
-import 'dart:convert';
-
-TopHeadlineModels topHeadlineModelsFromJson(String str) => TopHeadlineModels.fromJson(json.decode(str));
-
-String topHeadlineModelsToJson(TopHeadlineModels data) => json.encode(data.toJson());
 
 class TopHeadlineModels {
     String? status;
