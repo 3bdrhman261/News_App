@@ -1,11 +1,14 @@
+import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:news_api/core/Networking/dio_heber.dart';
 import 'package:news_api/core/routering/router_config.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
+  DioHeber.initdio();
 
   runApp(
     EasyLocalization(
@@ -13,7 +16,7 @@ void main() async {
       path:
           'assets/translations', // <-- change the path of the translation files
       fallbackLocale: Locale('ar'),
-    //  startLocale: Locale("ar"),
+      //  startLocale: Locale("ar"),
       child: MyApp(),
     ),
   );
@@ -31,9 +34,9 @@ class MyApp extends StatelessWidget {
       splitScreenMode: false,
       builder: (context, child) {
         return MaterialApp.router(
-            localizationsDelegates: context.localizationDelegates,
-      supportedLocales: context.supportedLocales,
-      locale: context.locale,
+          localizationsDelegates: context.localizationDelegates,
+          supportedLocales: context.supportedLocales,
+          locale: context.locale,
           title: 'News App',
           routerConfig: RouterGenerationConfig.goRoute,
         );
