@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -8,6 +9,7 @@ class TopHeadLine extends StatelessWidget {
   final String name;
   final String date;
   final String? image;
+  final String? Discrption;
 
   const TopHeadLine({
     super.key,
@@ -15,6 +17,7 @@ class TopHeadLine extends StatelessWidget {
     this.image,
     required this.name,
     required this.title,
+    this.Discrption
   });
 
   @override
@@ -28,7 +31,8 @@ class TopHeadLine extends StatelessWidget {
           fit: StackFit.expand,
           children: [
             CachedNetworkImage(
-              imageUrl: image ??
+              imageUrl:
+                  image ??
                   "https://th.bing.com/th/id/OIP.-mlwDVsSwfABKmZBtIBbtQHaFY?w=229&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3",
               fit: BoxFit.cover,
               colorBlendMode: BlendMode.darken,
@@ -56,13 +60,15 @@ class TopHeadLine extends StatelessWidget {
                   children: [
                     Container(
                       padding: EdgeInsets.symmetric(
-                          horizontal: 10.w, vertical: 3.h),
+                        horizontal: 10.w,
+                        vertical: 3.h,
+                      ),
                       decoration: BoxDecoration(
                         color: const Color(0xFFE8B86D),
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: Text(
-                        'FEATURED',
+                        'FEATURED'.tr(),
                         style: GoogleFonts.dmSans(
                           fontSize: 9.sp,
                           fontWeight: FontWeight.w600,
@@ -93,7 +99,6 @@ class TopHeadLine extends StatelessWidget {
                         color: const Color(0xFFAAAAAA),
                       ),
                     ),
-                   
                   ],
                 ),
               ),

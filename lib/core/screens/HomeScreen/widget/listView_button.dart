@@ -1,27 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:news_api/core/routering/app_routering.dart';
 
 class ListviewButton extends StatelessWidget {
   final String title;
   final bool isActive;
-  final GoRoute? onTap;
+  final Function() onTap;
 
   const ListviewButton({
     super.key,
     required this.title,
-    this.onTap,
+   required this.onTap,
     this.isActive = false,
   });
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        GoRouter.of(context).pushNamed(AppRouter.searchResults);
-      },
+      onTap:onTap,
       borderRadius: BorderRadius.circular(50),
       child: Container(
         alignment: Alignment.center,

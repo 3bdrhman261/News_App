@@ -1,12 +1,13 @@
-
 import 'package:go_router/go_router.dart';
-import '../screens/ArtcleScreen/artcle_screem.dart';
+import 'package:news_api/core/screens/HomeScreen/models/top_headline_models.dart';
+import 'package:news_api/core/screens/HomeScreen/widget/ArtcleScreen/artcle_screen.dart';
+
 import '../screens/HomeScreen/home_screen.dart';
 import '../screens/Search resultsScreen/search_results_screen.dart';
 import '../screens/SearchScreen/search_screen.dart';
 import 'app_routering.dart';
 
-  class RouterGenerationConfig {
+class RouterGenerationConfig {
   static GoRouter goRoute = GoRouter(
     initialLocation: AppRouter.homeScreen,
     routes: [
@@ -21,16 +22,21 @@ import 'app_routering.dart';
         builder: (context, state) => const SearchScreen(),
       ),
       GoRoute(
-        name: AppRouter.searchResults,
-        path: AppRouter.searchResults,
-         builder: (context, state) => const SearchResultsScreen(),
+        name: AppRouter.searchResultsScreen,
+        path: AppRouter.searchResultsScreen,
+        builder: (context, state) {
+          String query = state.extra as String;
+          return SearchResultsScreen(query: query);
+        },
       ),
       GoRoute(
         name: AppRouter.artcleScreen,
         path: AppRouter.artcleScreen,
-         builder: (context, state) => const ArtcleScreem(),
+        builder: (context, state) {
+          Article article = state.extra as Article;
+          return ArtcleScreen(article: article);
+        },
       ),
-     
     ],
   );
 }

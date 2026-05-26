@@ -1,6 +1,4 @@
-
 import 'dart:ui';
-
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -14,6 +12,7 @@ class CustomTextField extends StatelessWidget {
   final String? Function(String?)? validator;
   final TextInputType? keyboardType;
   final Icon? icons;
+  final void Function(String)? onFieldSubmitted;
 
   const CustomTextField({
     super.key,
@@ -25,20 +24,22 @@ class CustomTextField extends StatelessWidget {
     this.keyboardType,
     this.maxLine,
     this.icons,
-  
+    this.onFieldSubmitted
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 331.w,
-      height: 80.h,
+      
+      width: 170,
+      height: 40.h,
       decoration: BoxDecoration(
-        border: Border.all(color: Color.fromARGB(255, 255, 255, 255), width: 2),
+        
+        border: Border.all(color: Color.fromARGB(255, 73, 72, 72), width: 2),
         borderRadius: BorderRadius.circular(16.r),
       ),
       child: TextFormField(
-        cursorColor: const Color.fromARGB(255, 106, 104, 104),
+        cursorColor: const Color.fromARGB(255, 233, 226, 226),
 
         maxLines: maxLine ?? 1,
         keyboardType: keyboardType ?? TextInputType.text,
@@ -46,13 +47,14 @@ class CustomTextField extends StatelessWidget {
         validator: validator,
         obscureText: isPassword ?? false,
         autofocus: false,
+        onFieldSubmitted: onFieldSubmitted,
 
         decoration: InputDecoration(
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(16.r),
             borderSide: BorderSide(
               width: 1,
-              color: const Color.fromARGB(221, 208, 207, 207),
+              color: const Color.fromARGB(221, 209, 195, 195),
             ),
           ),
           prefixIcon: icons,
@@ -70,7 +72,7 @@ class CustomTextField extends StatelessWidget {
 
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(16.r),
-            borderSide: BorderSide(width: 1.w, ),
+            borderSide: BorderSide(width: 1.w),
           ),
           errorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(16.r),

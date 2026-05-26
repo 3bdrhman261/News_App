@@ -2,12 +2,16 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+
 import 'package:google_fonts/google_fonts.dart';
+import 'package:news_api/core/AppConstans/AppConstans.dart';
+import 'package:news_api/core/routering/app_routering.dart';
 
 import 'package:news_api/core/screens/HomeScreen/models/top_headline_models.dart';
 import 'package:news_api/core/screens/HomeScreen/servises/home_screen_servises.dart';
 import 'package:news_api/core/screens/HomeScreen/widget/card_widget.dart';
 import 'package:news_api/core/screens/HomeScreen/widget/listView_button.dart';
+import 'package:news_api/core/screens/HomeScreen/widget/text-Felf-Screen.dart';
 import 'package:news_api/core/screens/HomeScreen/widget/top_head_line.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -32,50 +36,73 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         backgroundColor: const Color(0xFF0A0A0F),
         elevation: 0,
-        toolbarHeight: 110.h,
-        title: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'TODAY\'S NEWS',
-              style: GoogleFonts.dmSans(
-                fontSize: 11.sp,
-                fontWeight: FontWeight.w400,
-                color: const Color(0xFF888780),
-                letterSpacing: 1.5,
-              ),
-            ),
-            SizedBox(height: 4.h),
-            RichText(
-              text: TextSpan(
+        toolbarHeight: 130.h,
+        title: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
                 children: [
-                  TextSpan(
-                    text: 'Explore ',
-                    style: GoogleFonts.playfairDisplay(
-                      fontSize: 34.sp,
-                      fontWeight: FontWeight.w900,
-                      color: const Color(0xFFF0EDE6),
-                    ),
-                  ),
-                  TextSpan(
-                    text: 'Stories',
-                    style: GoogleFonts.playfairDisplay(
-                      fontSize: 34.sp,
-                      fontWeight: FontWeight.w900,
-                      color: const Color(0xFFE8B86D),
-                    ),
+                  Row(
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          setState(() {
+                            if (context.locale.languageCode == "en") {
+                              context.setLocale(Locale("ar"));
+                            } else {
+                              context.setLocale(Locale("en"));
+                            }
+                            Appconstans.Long = context.locale.languageCode;
+                          });
+                        },
+                        icon: Icon(
+                          Icons.language,
+                          color: const Color.fromARGB(135, 129, 126, 126),
+                        ),
+                      ),
+                      Text(
+                        'TODAY\'S NEWS'.tr(),
+                        style: GoogleFonts.dmSans(
+                          fontSize: 11.sp,
+                          fontWeight: FontWeight.w400,
+                          color: const Color(0xFF888780),
+                          letterSpacing: 1.5,
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
-            ),
-          ],
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.search, color: const Color(0xFF888780), size: 30),
+
+              SizedBox(height: 4.h),
+              RichText(
+                text: TextSpan(
+                  children: [
+                    TextSpan(
+                      text: ' Explore '.tr(),
+                      style: GoogleFonts.playfairDisplay(
+                        fontSize: 30.sp,
+                        fontWeight: FontWeight.w900,
+                        color: const Color(0xFFF0EDE6),
+                      ),
+                    ),
+                    TextSpan(
+                      text: ' Stories'.tr(),
+                      style: GoogleFonts.playfairDisplay(
+                        fontSize: 30.sp,
+                        fontWeight: FontWeight.w900,
+                        color: const Color(0xFFE8B86D),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
-        ],
+        ),
+
+        actions: [Textfelfscreen()],
       ),
       body: FutureBuilder(
         future: HomeScreenServises().getToplineArtcels(),
@@ -118,10 +145,51 @@ class _HomeScreenState extends State<HomeScreen> {
                       scrollDirection: Axis.horizontal,
                       physics: const BouncingScrollPhysics(),
                       children: [
-                        ListviewButton(title: "travel".tr(),),
-                        ListviewButton(title: "technology".tr()),
-                        ListviewButton(title: "entertainment".tr()),
-                        ListviewButton(title: "Business".tr()),
+                        ListviewButton(
+                          title: "travel".tr(),
+                          onTap: () {
+                            GoRouter.of(context).pushNamed(
+                              AppRouter.searchResultsScreen,
+                              extra: "travel".tr(),
+                            );
+                          },
+                        ),
+                        ListviewButton(
+                          title: "technology".tr(),
+                          onTap: () {
+                            GoRouter.of(context).pushNamed(
+                              AppRouter.searchResultsScreen,
+                              extra: "technology".tr(),
+                            );
+                          },
+                        ),
+                        ListviewButton(
+                          title: "entertainment".tr(),
+                          onTap: () {
+                            GoRouter.of(context).pushNamed(
+                              AppRouter.searchResultsScreen,
+                              extra: "entertainment".tr(),
+                            );
+                          },
+                        ),
+                        ListviewButton(
+                          title: "Business".tr(),
+                          onTap: () {
+                            GoRouter.of(context).pushNamed(
+                              AppRouter.searchResultsScreen,
+                              extra: "Business".tr(),
+                            );
+                          },
+                        ),
+                        ListviewButton(
+                          title: "Football".tr(),
+                          onTap: () {
+                            GoRouter.of(context).pushNamed(
+                              AppRouter.searchResultsScreen,
+                              extra: "Football".tr(),
+                            );
+                          },
+                        ),
                       ],
                     ),
                   ),
@@ -150,12 +218,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       itemBuilder: (context, index) {
                         Article article = topHeadlineModels.articles![index];
                         return CardWidget(
-                          image: article.urlToImage,
-                          date: DateFormat(
-                            'yyyy/MM/dd  KK:mm',
-                          ).format(topHeadlineModels.articles![0].publishedAt!),
-                          name: article.author ?? "",
-                          title: article.title ?? "",
+                          ontap: () {
+                            GoRouter.of(
+                              context,
+                            ).pushNamed(AppRouter.artcleScreen, extra: article);
+                          },
+                          article: article,
                         );
                       },
                     ),
@@ -166,7 +234,7 @@ class _HomeScreenState extends State<HomeScreen> {
           }
           return Center(
             child: Text(
-              "Something Went Wrong",
+              "Something Went Wrong".tr(),
               style: GoogleFonts.dmSans(color: const Color(0xFF888780)),
             ),
           );

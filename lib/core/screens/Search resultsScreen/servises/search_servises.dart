@@ -11,7 +11,7 @@ class SearchServises {
         endpont: ApiEndpoints.topHeadline,
         query: {
           "apiKey": Appconstans.NewsApiKye,
-           "q": query},
+           "q": query,"Langeag":Appconstans.Long},
       );
       if (response.statusCode == 200) {
         TopHeadlineModels topHeadlineModels = TopHeadlineModels.fromJson(

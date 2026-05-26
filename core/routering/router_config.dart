@@ -21,8 +21,8 @@ import 'package:news_api/core/routering/app_routering.dart';
         builder: (context, state) => const SearchScreen(),
       ),
       GoRoute(
-        name: AppRouter.searchResults,
-        path: AppRouter.searchResults,
+        name: AppRouter.searchResultsScreen,
+        path: AppRouter.searchResultsScreen,
          builder: (context, state) => const SearchResultsScreen(),
       ),
       GoRoute(
