@@ -1,10 +1,8 @@
 import 'package:go_router/go_router.dart';
 import 'package:news_api/core/screens/HomeScreen/models/top_headline_models.dart';
 import 'package:news_api/core/screens/HomeScreen/widget/ArtcleScreen/artcle_screen.dart';
-
 import '../screens/HomeScreen/home_screen.dart';
 import '../screens/Search resultsScreen/search_results_screen.dart';
-import '../screens/SearchScreen/search_screen.dart';
 import 'app_routering.dart';
 
 class RouterGenerationConfig {
@@ -16,11 +14,7 @@ class RouterGenerationConfig {
         path: AppRouter.homeScreen,
         builder: (context, state) => const HomeScreen(),
       ),
-      GoRoute(
-        name: AppRouter.searchScreen,
-        path: AppRouter.searchScreen,
-        builder: (context, state) => const SearchScreen(),
-      ),
+   
       GoRoute(
         name: AppRouter.searchResultsScreen,
         path: AppRouter.searchResultsScreen,

@@ -8,9 +8,7 @@ import 'package:news_api/core/screens/HomeScreen/models/top_headline_models.dart
 class CardWidget extends StatelessWidget {
   final Article article;
   final Function() ontap;
-  const CardWidget({super.key,
- required this.ontap,
-   required this.article});
+  const CardWidget({super.key, required this.ontap, required this.article});
 
   @override
   Widget build(BuildContext context) {
@@ -55,9 +53,7 @@ class CardWidget extends StatelessWidget {
                   SizedBox(height: 6.h),
                   Text(
                     //   maxLines: 2,
-                    "${article.author}.${DateFormat(
-                      'yyyy/ MM/ dd _ KK:mm',
-                    ).format(article.publishedAt!)}",
+                    "${article.author}.${DateFormat('yyyy/ MM/ dd _ KK:mm').format(article.publishedAt!)}",
                     style: GoogleFonts.dmSans(
                       fontSize: 10.sp,
                       fontWeight: FontWeight.w500,

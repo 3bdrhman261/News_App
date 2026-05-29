@@ -1,9 +1,7 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:news_api/core/routering/app_routering.dart';
 import 'package:news_api/core/screens/HomeScreen/widget/custom_text_field.dart';
-import 'package:news_api/core/screens/HomeScreen/widget/listView_button.dart';
 
 class Textfelfscreen extends StatefulWidget {
   const Textfelfscreen({super.key});

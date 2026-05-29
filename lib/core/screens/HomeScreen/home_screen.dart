@@ -4,30 +4,27 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:google_fonts/google_fonts.dart';
-import 'package:news_api/core/AppConstans/AppConstans.dart';
+
 import 'package:news_api/core/routering/app_routering.dart';
 
 import 'package:news_api/core/screens/HomeScreen/models/top_headline_models.dart';
 import 'package:news_api/core/screens/HomeScreen/servises/home_screen_servises.dart';
+import 'package:news_api/core/screens/HomeScreen/widget/AppBar.dart';
 import 'package:news_api/core/screens/HomeScreen/widget/card_widget.dart';
 import 'package:news_api/core/screens/HomeScreen/widget/listView_button.dart';
 import 'package:news_api/core/screens/HomeScreen/widget/text-Felf-Screen.dart';
 import 'package:news_api/core/screens/HomeScreen/widget/top_head_line.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+ 
+  const HomeScreen({super.key,});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  @override
-  void initState() {
-    // TODO: implement initState
-    HomeScreenServises().getToplineArtcels();
-    super.initState();
-  }
+ 
 
   @override
   Widget build(BuildContext context) {
@@ -37,71 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: const Color(0xFF0A0A0F),
         elevation: 0,
         toolbarHeight: 130.h,
-        title: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  Row(
-                    children: [
-                      IconButton(
-                        onPressed: () {
-                          setState(() {
-                            if (context.locale.languageCode == "en") {
-                              context.setLocale(Locale("ar"));
-                            } else {
-                              context.setLocale(Locale("en"));
-                            }
-                            Appconstans.Long = context.locale.languageCode;
-                          });
-                        },
-                        icon: Icon(
-                          Icons.language,
-                          color: const Color.fromARGB(135, 129, 126, 126),
-                        ),
-                      ),
-                      Text(
-                        'TODAY\'S NEWS'.tr(),
-                        style: GoogleFonts.dmSans(
-                          fontSize: 11.sp,
-                          fontWeight: FontWeight.w400,
-                          color: const Color(0xFF888780),
-                          letterSpacing: 1.5,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-
-              SizedBox(height: 4.h),
-              RichText(
-                text: TextSpan(
-                  children: [
-                    TextSpan(
-                      text: ' Explore '.tr(),
-                      style: GoogleFonts.playfairDisplay(
-                        fontSize: 30.sp,
-                        fontWeight: FontWeight.w900,
-                        color: const Color(0xFFF0EDE6),
-                      ),
-                    ),
-                    TextSpan(
-                      text: ' Stories'.tr(),
-                      style: GoogleFonts.playfairDisplay(
-                        fontSize: 30.sp,
-                        fontWeight: FontWeight.w900,
-                        color: const Color(0xFFE8B86D),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
-
+        title: Appbar(),
         actions: [Textfelfscreen()],
       ),
       body: FutureBuilder(
@@ -128,7 +61,7 @@ class _HomeScreenState extends State<HomeScreen> {
             if (topHeadlineModels.totalResults == 0) {
               return Center(
                 child: Text(
-                  "f".tr(),
+                  "No_ Results".tr(),
                   style: GoogleFonts.dmSans(color: const Color(0xFF888780)),
                 ),
               );
@@ -146,6 +79,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       physics: const BouncingScrollPhysics(),
                       children: [
                         ListviewButton(
+                          isActive: true,
                           title: "travel".tr(),
                           onTap: () {
                             GoRouter.of(context).pushNamed(
@@ -155,6 +89,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           },
                         ),
                         ListviewButton(
+                          isActive: true,
                           title: "technology".tr(),
                           onTap: () {
                             GoRouter.of(context).pushNamed(
@@ -164,6 +99,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           },
                         ),
                         ListviewButton(
+                          isActive: true,
                           title: "entertainment".tr(),
                           onTap: () {
                             GoRouter.of(context).pushNamed(
@@ -173,6 +109,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           },
                         ),
                         ListviewButton(
+                          isActive: true,
                           title: "Business".tr(),
                           onTap: () {
                             GoRouter.of(context).pushNamed(
@@ -182,6 +119,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           },
                         ),
                         ListviewButton(
+                          isActive: true,
                           title: "Football".tr(),
                           onTap: () {
                             GoRouter.of(context).pushNamed(
@@ -199,12 +137,16 @@ class _HomeScreenState extends State<HomeScreen> {
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 28.w),
                   child: TopHeadLine(
-                    date: DateFormat(
-                      'yyyy/ MM/ dd _ KK:mm',
-                    ).format(topHeadlineModels.articles![0].publishedAt!),
-                    image: topHeadlineModels.articles![0].urlToImage,
-                    name: topHeadlineModels.articles![0].title ?? "",
-                    title: topHeadlineModels.articles![0].author ?? "",
+                    
+                     date: DateFormat(
+                       'yyyy/ MM/ dd _ KK:mm',
+                     ).format(topHeadlineModels.articles![0].publishedAt!),
+                     image: topHeadlineModels.articles![0].urlToImage,
+                     name: topHeadlineModels.articles![0].title ?? "",
+                     title: topHeadlineModels.articles![0].author ?? "",
+                    
+                       
+
                   ),
                 ),
 

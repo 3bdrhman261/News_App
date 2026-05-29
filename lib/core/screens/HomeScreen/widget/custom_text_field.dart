@@ -24,21 +24,23 @@ class CustomTextField extends StatelessWidget {
     this.keyboardType,
     this.maxLine,
     this.icons,
-    this.onFieldSubmitted
+    this.onFieldSubmitted,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      
       width: 170,
-      height: 40.h,
+      height: 50.h,
       decoration: BoxDecoration(
-        
         border: Border.all(color: Color.fromARGB(255, 73, 72, 72), width: 2),
         borderRadius: BorderRadius.circular(16.r),
       ),
       child: TextFormField(
+        style: TextStyle(
+          color: const Color.fromARGB(255, 255, 255, 255), // ← لون النص هنا
+          fontSize: 16,
+        ),
         cursorColor: const Color.fromARGB(255, 233, 226, 226),
 
         maxLines: maxLine ?? 1,

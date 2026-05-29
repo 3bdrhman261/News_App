@@ -7,6 +7,7 @@ import 'package:news_api/core/routering/app_routering.dart';
 import 'package:news_api/core/screens/HomeScreen/models/top_headline_models.dart';
 import 'package:news_api/core/screens/HomeScreen/widget/card_widget.dart';
 import 'package:news_api/core/screens/Search%20resultsScreen/servises/search_servises.dart';
+import 'package:news_api/core/screens/Search%20resultsScreen/widget/App_bare_screen.dart';
 
 class SearchResultsScreen extends StatefulWidget {
   final String query;
@@ -46,7 +47,7 @@ class _SearchResultsScreenState extends State<SearchResultsScreen> {
             if (topHeadlineModels.totalResults == 0) {
               return Center(
                 child: Text(
-                  "f".tr(),
+                  "No_ Results".tr(),
                   style: GoogleFonts.dmSans(color: const Color(0xFF888780)),
                 ),
               );
@@ -55,45 +56,7 @@ class _SearchResultsScreenState extends State<SearchResultsScreen> {
             return Column(
               children: [
                 SizedBox(height: 50.h),
-                Container(
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 28.w),
-                    child: Row(
-                      children: [
-                        GestureDetector(
-                          onTap: () => Navigator.pop(context),
-                          child: Container(
-                            width: 44.w,
-                            height: 44.w,
-                            decoration: BoxDecoration(
-                              color: const Color(0xFF1A1A24),
-                              shape: BoxShape.circle,
-                              border: Border.all(
-                                color: const Color(0xFF2A2A38),
-                                width: 0.5,
-                              ),
-                            ),
-                            child: const Icon(
-                              Icons.arrow_back_ios_new_rounded,
-                              color: Color(0xFF888780),
-                              size: 25,
-                            ),
-                          ),
-                        ),
-                        SizedBox(width: 10.w),
-                        Text(
-                          'CATEGORY',
-                          style: GoogleFonts.dmSans(
-                            fontSize: 11.sp,
-                            fontWeight: FontWeight.w400,
-                            color: const Color(0xFF555555),
-                            letterSpacing: 1.2,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+              AppBareScreen(),
                 SizedBox(height: 10.h),
                 Expanded(
                   child: Padding(
